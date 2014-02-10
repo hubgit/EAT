@@ -110,6 +110,10 @@ EAT.typeof = function(object) {
 	};
 
 	var parseItem = function(template, root) {
+		if (template == '.') {
+			return root.textContent;
+		}
+		
 		// TODO: handle attribute at the end of a longer selector
 		if (template.substring(0, 1) == '@') {
 			return root.getAttribute(template.substring(1));
