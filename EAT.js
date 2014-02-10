@@ -63,6 +63,9 @@ EAT.typeof = function(object) {
 
 		case '[object String]':
 			return 'string';
+		
+		case '[object Function]':
+			return 'function';
 	}
 };
 
@@ -76,6 +79,9 @@ EAT.typeof = function(object) {
 
 			case 'object':
 				return parseObject(template, root);
+				
+			case 'function':
+				return parseFunction(template, root);
 
 			default:
 				return parseItem(template, root);
@@ -107,6 +113,10 @@ EAT.typeof = function(object) {
 		}
 
 		return output;
+	};
+	
+	var parseFunction = function(template, root) {
+		return template(root);
 	};
 
 	var parseItem = function(template, root) {
