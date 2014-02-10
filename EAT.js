@@ -83,8 +83,8 @@ EAT.typeof = function(object) {
 			case 'function':
 				return parseFunction(template, root);
 
-			default:
-				return parseItem(template, root);
+			case 'string':
+				return parseString(template, root);
 		}
 	};
 
@@ -119,7 +119,7 @@ EAT.typeof = function(object) {
 		return template(root);
 	};
 
-	var parseItem = function(template, root) {
+	var parseString = function(template, root) {
 		if (template == '.') {
 			return root.textContent;
 		}
