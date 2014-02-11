@@ -9,7 +9,7 @@ EAT.get = function(url, responseType) {
 	})
 };
 
-// make an XMLHttpRequest
+// make an HTTP Request
 EAT.request = function(settings) {
 	var params = {
 		method: 'GET',
