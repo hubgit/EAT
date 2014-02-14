@@ -33,7 +33,7 @@ EAT.request = function(settings) {
 
 		xhr.open(params.method, params.url);
 		xhr.responseType = params.responseType;
-		xhr.send();
+		xhr.send(settings.data);
 	});
 };
 
