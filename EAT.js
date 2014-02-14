@@ -33,6 +33,13 @@ EAT.request = function(settings) {
 
 		xhr.open(params.method, params.url);
 		xhr.responseType = params.responseType;
+		
+		if (settings.headers) {
+			settings.headers.forEach(function(value, header) {
+				xhr.setRequestHeader(header, value);
+			});
+		}
+		
 		xhr.send(settings.data);
 	});
 };
