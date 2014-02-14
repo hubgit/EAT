@@ -11,13 +11,13 @@ EAT.get = function(url, responseType) {
 
 // make an HTTP Request
 EAT.request = function(settings) {
-	var params = {
+	var options = {
 		method: 'GET',
 		responseType: ''
 	};
 
 	for (var key in settings) {
-		params[key] = settings[key];
+		options[key] = settings[key];
 	};
 
 	return new Promise(function(resolve, reject) {
@@ -30,18 +30,34 @@ EAT.request = function(settings) {
 		xhr.onerror = function() {
 			reject(xhr, xhr.statusText);
 		};
-
-		xhr.open(params.method, params.url);
-		xhr.responseType = params.responseType;
 		
-		if (settings.headers) {
-			settings.headers.forEach(function(value, header) {
+		if (options.params) {
+			options.url += EAT.param(options.params);
+		}
+
+		xhr.open(options.method, options.url);
+		xhr.responseType = options.responseType;
+		
+		if (options.headers) {
+			options.headers.forEach(function(value, header) {
 				xhr.setRequestHeader(header, value);
 			});
 		}
 		
-		xhr.send(settings.data);
+		xhr.send(options.data);
 	});
+};
+
+EAT.param = function(params) {
+	var items = [];
+
+	for (var key in params) {
+		if (params.hasOwnProperty(key)) {
+	   		items.push(encodeURIComponent(key) + "=" + encodeURIComponent(params[key]));
+		}
+	}
+
+	return items.length ? "?" + items.join("&").replace(/%20/g, "+") : "";
 };
 
 // load a script
