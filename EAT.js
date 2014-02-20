@@ -324,3 +324,15 @@ EAT.typeof = function(object) {
 	};
 });
 
+EAT.save = function(data, type, filename) {
+	var blob = new Blob([data], { type: type });
+	
+	if (filename) {
+		// TODO:
+	} else {	
+		window.location.href = URL.createObjectURL(blob);	
+	}
+};
+
+
+
