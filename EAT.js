@@ -294,35 +294,11 @@ EAT.typeof = function(object) {
 	};
 })();
 
-(function() {
-	var nodesAsArray = function(method, selector, callback) {
-		var nodes;
-		
-		if (EAT.typeof(selector) == 'array') {
-			nodes = selector[0].querySelectorAll(selector[1]);
-		} else {
-			nodes = document.querySelectorAll(selector);
-		}
-		
-		return Array.prototype[method].call(nodes, callback);
-	};
+EAT.select = function(selector, root) {
+	root = root || document;
 	
-	EAT.forEach = function(selector, callback) {
-		return nodesAsArray('forEach', selector, callback);	
-	};
-	
-	EAT.map = function(selector, callback) {
-		return nodesAsArray('map', selector, callback);	
-	};
-	
-	EAT.filter = function(selector, callback) {
-		return nodesAsArray('filter', selector, callback);	
-	};
-	
-	EAT.reduce = function(selector, callback) {
-		return nodesAsArray('reduce', selector, callback);	
-	};
-})();
+	return Array.prototype.slice.call(root.querySelectorAll(selector));	
+};
 
 EAT.save = function(data, type, filename) {
 	var blob = new Blob([data], { type: type });
