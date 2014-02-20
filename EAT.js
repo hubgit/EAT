@@ -322,7 +322,7 @@ EAT.typeof = function(object) {
 	EAT.reduce = function(selector, callback) {
 		return nodesAsArray('reduce', selector, callback);	
 	};
-});
+})();
 
 EAT.save = function(data, type, filename) {
 	var blob = new Blob([data], { type: type });
