@@ -19,6 +19,10 @@ EAT.request = function(settings) {
 	for (var key in settings) {
 		options[key] = settings[key];
 	};
+	
+	if (options.params) {
+		options.url += EAT.param(options.params);
+	}
 
 	return new Promise(function(resolve, reject) {
 		var xhr = new XMLHttpRequest;
@@ -53,11 +57,11 @@ EAT.param = function(params) {
 
 	for (var key in params) {
 		if (params.hasOwnProperty(key)) {
-	   		items.push(encodeURIComponent(key) + "=" + encodeURIComponent(params[key]));
+	   		items.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
 		}
 	}
 
-	return items.length ? "?" + items.join("&").replace(/%20/g, "+") : "";
+	return items.length ? '?' + items.join('&').replace(/%20/g, '+') : '';
 };
 
 // load a script
