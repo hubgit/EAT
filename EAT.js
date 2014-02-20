@@ -1,10 +1,16 @@
 EAT = {};
 
 // make a GET request
-EAT.get = function(url, responseType) {
+EAT.get = function(url, params, responseType) {
+	if (EAT.typeof(params) == 'string') {
+		responseType = params;
+		params = null;
+	}
+	
 	return EAT.request({
 		url: url,
 		method: 'GET',
+		params: params,
 		responseType: responseType
 	})
 };
