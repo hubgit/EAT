@@ -106,6 +106,8 @@ EAT.typeof = function(object) {
 // https://github.com/hubgit/extract
 (function() {
 	var parse = function(template, root) {
+		root = root || document;
+		
 		switch (EAT.typeof(template)) {
 			case 'array':
 				return parseArray(template, root);
