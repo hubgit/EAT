@@ -310,5 +310,34 @@ EAT.save = function(data, type, filename) {
 	}
 };
 
+EAT.csv = function(items, fields) {
+  var rows = items.map(function(item) {
+     var result = [];
+     
+     fields.forEach(function(field) {
+         var value = item[field];
+         
+         if (typeof value == 'string') {       
+             value = value.replace(/"/g, '""');
+             
+             value = value.replace(/[\n\r]+/g, ' ');
+             
+             if (value.match(/,/)) {
+                 value = '"' + value + '"';
+             }
+         }
+         
+         result.push(value);
+     });
+     
+     return result.join(',');
+  });
+  
+  rows.unshift(fields);
+    
+  EAT.save(rows.join('\n', 'application/octet-stream'));
+};
+
+
 
 
