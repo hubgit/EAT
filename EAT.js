@@ -335,7 +335,7 @@ EAT.csv = function(items, fields) {
   
   rows.unshift(fields);
     
-  EAT.save(rows.join('\n', 'application/octet-stream'));
+  EAT.save(rows.join('\n'), 'application/octet-stream');
 };
 
 
