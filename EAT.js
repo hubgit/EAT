@@ -25,10 +25,6 @@ EAT.request = function(settings) {
 	for (var key in settings) {
 		options[key] = settings[key];
 	};
-	
-	if (options.params) {
-		options.url += EAT.param(options.params);
-	}
 
 	return new Promise(function(resolve, reject) {
 		var xhr = new XMLHttpRequest;
